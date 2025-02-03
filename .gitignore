@@ -1,0 +1,17 @@
+.env
+.env.local
+.env.*.local
+node_modules
+/docs
+api.zip
+/api_v1
+frontend/.next/
+frontend/out/
+api/dist/
+api/build/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
