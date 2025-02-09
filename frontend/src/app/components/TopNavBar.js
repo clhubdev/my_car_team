@@ -10,7 +10,8 @@ export default function TopNavBar() {
                     width={500}
                     height={500}
                     alt="logo MyCarTeam"
-                    className="w-32"          
+                    className="w-32" 
+                    priority         
                 />
             </Link>
 
