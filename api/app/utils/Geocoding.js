@@ -48,6 +48,27 @@ class OpenRouteService {
             throw error;
         }
     }
+
+    static async getAutoCompleteAddress(query) {
+        const apiKey = config.openRouteServiceKey;
+        const url = `https://api.openrouteservice.org/geocode/search?api_key=${apiKey}&text=${encodeURIComponent(query)}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8'
+                }
+            });
+
+            const data = await response.json();
+
+            return data;
+        } catch (error) {
+            console.error('Erreur lors du calcul de la distance :', error.message);
+            throw error;
+        }
+    }
 }
 
 export default OpenRouteService;
