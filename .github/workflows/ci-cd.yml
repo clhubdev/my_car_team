@@ -56,7 +56,7 @@ jobs:
           script: |
             # Télécharger les dernières images
             docker pull ${{ secrets.DOCKER_USERNAME }}/api:latest
-            # docker pull ${{ secrets.DOCKER_USERNAME }}/frontend:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/frontend:latest
 
             # Aller dans le dossier où se trouve votre docker-compose.yml sur le Droplet
             cd /root/myCarTeam
