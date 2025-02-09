@@ -24,7 +24,7 @@ jobs:
       # --- Construction de l'image Frontend ---
       - name: Build de l'image Docker du Frontend
         run: |
-          docker build -f ./frontend/Dockerfile.prod -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./frontend
+          docker build --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }} -f ./frontend/Dockerfile.prod -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./frontend
 
       # --- Authentification à Docker Hub ---
       - name: Connexion à Docker Hub
