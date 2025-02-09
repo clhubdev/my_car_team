@@ -20,6 +20,9 @@ const config = {
 
   // OpenRouteService API
   openRouteServiceKey: process.env.ORS_KEY,
+
+  //BASE URL FOR FRONTEND 
+  frontendBaseURL: process.env.FRONTEND_BASE_URL
 };
 
 export default config;

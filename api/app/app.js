@@ -2,11 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import routes from './routes/index.js';
 import { setupSwagger } from "../swagger.js";
+import config from './config.js';
 
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: config.frontendBaseURL
 }));
 
 // Middleware Swager (auto-doc api)
