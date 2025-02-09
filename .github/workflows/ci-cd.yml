@@ -22,9 +22,9 @@ jobs:
           docker build -f ./api/Dockerfile.prod -t ${{ secrets.DOCKER_USERNAME }}/api:latest ./api
 
       # --- Construction de l'image Frontend ---
-      # - name: Build de l'image Docker du Frontend
-      #   run: |
-      #     docker build -f ./frontend/Dockerfile.prod -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./frontend
+      - name: Build de l'image Docker du Frontend
+        run: |
+          docker build -f ./frontend/Dockerfile.prod -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./frontend
 
       # --- Authentification à Docker Hub ---
       - name: Connexion à Docker Hub
@@ -39,9 +39,9 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/api:latest
 
       # --- Pousser l'image Frontend ---
-      # - name: Push de l'image Docker du Frontend
-      #   run: |
-      #     docker push ${{ secrets.DOCKER_USERNAME }}/frontend:latest
+      - name: Push de l'image Docker du Frontend
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/frontend:latest
 
   deploy:
     runs-on: ubuntu-latest
