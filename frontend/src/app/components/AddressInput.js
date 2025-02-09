@@ -4,7 +4,9 @@ import { useEffect, useState, useRef } from 'react';
 
 export default function AddressInput({ name, address, setAddress }) {
     const [suggestions, setSuggestions] = useState([]);
+
     const debounceTimeout = useRef(null);
+    const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
     async function fetchSuggestions(address) {
         try {
