@@ -1,8 +1,10 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useState } from "react";
 import AddressInput from "../components/AddressInput";
-import RouteMap from "../components/RouteMap";
+
+const RouteMap = dynamic(() => import('../components/RouteMap'), { ssr: false });
 
 export default function NewRoute() {
     const [itineraire, setItineraire] = useState({ start: null, end: null })
