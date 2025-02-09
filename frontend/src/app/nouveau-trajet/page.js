@@ -12,6 +12,8 @@ export default function NewRoute() {
     const [isValidateStart, setIsValidateStart] = useState(false);
     const [startAddress, setStartAddress] = useState('');
     const [endAddress, setEndAddress] = useState('');
+    
+    const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
     async function displayMap(event) {
         event.preventDefault();
@@ -20,10 +22,10 @@ export default function NewRoute() {
         const end = endAddress;
 
         if (start && end) {
-            const resStart = await fetch(`http://localhost:3001/route/getCoordinates/${encodeURIComponent(start)}`);
+            const resStart = await fetch(`${apiUrl}/route/getCoordinates/${encodeURIComponent(start)}`);
             const responseStart = await resStart.json();
 
-            const resEnd = await fetch(`http://localhost:3001/route/getCoordinates/${encodeURIComponent(end)}`);
+            const resEnd = await fetch(`${apiUrl}/route/getCoordinates/${encodeURIComponent(end)}`);
             const responseEnd = await resEnd.json();
 
             setItineraire({ start: responseStart, end: responseEnd });
