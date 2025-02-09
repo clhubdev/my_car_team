@@ -11,7 +11,7 @@ export default function AddressInput({ name, address, setAddress }) {
             if(!address.length) {
                 return;
             }
-            const res = await fetch(`http://localhost:3001/route/suggestions/${encodeURIComponent(address)}`);
+            const res = await fetch(`${apiUrl}/route/suggestions/${encodeURIComponent(address)}`);
             const reponse = await res.json();
 
             if (reponse.data.features) {
