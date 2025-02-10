@@ -38,7 +38,7 @@ export default function NewRoute() {
 
     return (
         <main className="flex-grow flex flex-col w-full items-center">
-            <h1>Proposer un nouveau trajet 2</h1>
+            <h1>Proposer un nouveau trajet 3</h1>
 
             {!isValidateRoute && (
                 <>
