@@ -12,6 +12,10 @@ export default function NewRoute() {
     const [isValidateStart, setIsValidateStart] = useState(false);
     const [startAddress, setStartAddress] = useState('');
     const [endAddress, setEndAddress] = useState('');
+
+    useEffect(() => {
+        console.log("NEXT_PUBLIC_API_BASE_URL =", process.env.NEXT_PUBLIC_API_BASE_URL);
+    }, []);
     
     const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
