@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddressInput from "../components/AddressInput";
 
 const RouteMap = dynamic(() => import('../components/RouteMap'), { ssr: false });
