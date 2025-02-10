@@ -6,9 +6,23 @@ import config from './config.js';
 
 const app = express();
 
-app.use(cors({
-    origin: config.frontendBaseURL
-}));
+// CORS Liste domaines autorisés
+const whitelist = ['https://mycarteam.fr', config.frontendBaseURL];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
+// End Cors
 
 // Middleware Swager (auto-doc api)
 setupSwagger(app);
