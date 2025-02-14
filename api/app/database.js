@@ -13,9 +13,9 @@ export const connectDB = async () => {
       await sequelize.authenticate();
       console.log('Connexion à la base de données réussie');
 
-      // dev only
+      // for dev only
       if (config.appEnv === 'development') {
-        await sequelize.sync({ alter: false });
+        await sequelize.sync({ alter: true });
         console.log('All models were synchronized successfully.');
       }
       

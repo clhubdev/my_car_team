@@ -11,14 +11,13 @@ const whitelist = ['https://mycarteam.fr', config.frontendBaseURL];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  }
+  },
+  credentials: true, 
 };
 
 app.use(cors(corsOptions));

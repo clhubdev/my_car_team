@@ -14,7 +14,7 @@ Entreprise.init(
         },
         headOfficeAddress: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             references: {
                 model: Address,
                 key: 'id'
@@ -26,11 +26,11 @@ Entreprise.init(
         },
         registrationNumber: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         vatNumber: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         phone: {
             type: DataTypes.STRING,
@@ -42,16 +42,15 @@ Entreprise.init(
         },
         industry: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         numberOfEmployees: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
-        // DATEONLY stocke la date sans l'heure
         incorporationDate: {
             type: DataTypes.DATEONLY,
-            allowNull: false,
+            allowNull: true,
         },
     },
     {

@@ -1,152 +1,115 @@
 "use client"
 
-import { TextField, Button, MenuItem, Select, InputLabel, FormControl } from "@mui/material";
-import { useState } from "react";
+import { TextField, Button } from "@mui/material";
+import apiClient from "../../../services/api";
 
 export default function RegisterForm() {
 
-    const [step, setStep] = useState(1);
+    async function onSubmitForm(event) {
+        event.preventDefault();
 
-    function onSubmitEntrepriseForm() {
-        console.log('submit form')
-        return false;
+        const formData = new FormData(event.currentTarget);
+        const data = Object.fromEntries(formData.entries());
+
+        console.log(data);
+
+        // Si mot de passe != mot de passe de confirmation afficher une alerte
+
+        try {
+            const results = await apiClient.post('/user', data)
+            console.log(results);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
-        <>
-            {step === 1 && (
-                <form className="flex flex-col justify-center p-5">
+        <form className="flex flex-col justify-center p-5" onSubmit={(e) => onSubmitForm(e)}>
 
-                    <h2 className="text-center mb-4">Informations sur l'entreprise</h2>
+            <h2 className="text-center mb-4">Informations sur l&apos;entreprise</h2>
 
-                    {/* Nom de l'entreprise */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
-                        label="Nom de l'entreprise"
-                        name="companyName"
-                        variant="outlined"
-                        required
-                    />
+            {/* Nom de l'entreprise */}
+            <TextField
+                sx={{ marginBottom: '1rem' }}
+                label="Nom de l'entreprise"
+                name="companyName"
+                variant="outlined"
+                required
+            />
 
-                    {/* Numéro SIREN */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
+            {/* Téléphone */}
+            <TextField
+                sx={{ marginBottom: '1rem' }}
+                label="Téléphone"
+                name="compagnyPhone"
+                variant="outlined"
+                type="tel"
+                required
+            />
 
-                        label="Numéro SIREN"
-                        name="siren"
-                        variant="outlined"
-                        required
-                    />
+            {/* Email de contact */}
+            <TextField
+                sx={{ marginBottom: '1rem' }}
+                label="Email de contact"
+                name="compagnyEmail"
+                variant="outlined"
+                type="email"
+                required
+            />
 
-                    {/* Numéro TVA */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
+            <h2 className="text-center mb-4">Informations sur le gestionnaire de compte</h2>
+            <TextField
+                sx={{ marginBottom: '1rem' }}
+                label="Email de connexion"
+                name="employeeEmail"
+                variant="outlined"
+                type="email"
+                autoComplete="username"
+                required
+            />
 
-                        label="Numéro TVA"
-                        name="tva"
-                        variant="outlined"
-                        required
-                    />
+            <TextField
+                sx={{ marginBottom: '1rem' }}
+                label="Mot de passe"
+                name="password"
+                variant="outlined"
+                type="password"
+                autoComplete="new-password"
+                required
+            />
 
-                    {/* Téléphone */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
-                        label="Téléphone"
-                        name="phone"
-                        variant="outlined"
-                        type="tel"
-                        required
-                    />
+            <TextField
+                sx={{ marginBottom: '1rem' }}
+                label="Mot de passe"
+                name="passwordConfirm"
+                variant="outlined"
+                type="password"
+                autoComplete="new-password"
+                required
+            />
 
-                    {/* Email de contact */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
-                        label="Email de contact"
-                        name="email"
-                        variant="outlined"
-                        type="email"
-                        required
-                    />
+            <TextField
+                sx={{ marginBottom: '1rem' }}
+                label="Nom"
+                name="lastname"
+                variant="outlined"
+                type="text"
+                required
+            />
 
-                    {/* Secteur d'industrie */}
-                    <FormControl variant="outlined" sx={{ marginBottom: '1rem' }} required>
-                        <InputLabel id="industry-label">Secteur d'industrie</InputLabel>
-                        <Select
-                            labelId="industry-label"
-                            name="industry"
-                            label="Secteur d'industrie"
-                        >
-                            <MenuItem value="technologie">Technologie</MenuItem>
-                            <MenuItem value="santé">Santé</MenuItem>
-                            <MenuItem value="finance">Finance</MenuItem>
-                            <MenuItem value="éducation">Éducation</MenuItem>
-                            <MenuItem value="autre">Autre</MenuItem>
-                        </Select>
-                    </FormControl>
+            <TextField
+                sx={{ marginBottom: '1rem' }}
+                label="Prénom"
+                name="firstname"
+                variant="outlined"
+                type="text"
+                required
+            />
 
-                    {/* Nombre d'employés */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
-                        label="Nombre d'employés"
-                        name="employees"
-                        variant="outlined"
-                        type="number"
-                        required
-                    />
-
-                    {/* Date de création */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
-                        label="Date de création"
-                        name="creationDate"
-                        variant="outlined"
-                        type="date"
-                        InputLabelProps={{ shrink: true }}
-                        required
-                    />
-
-                    {/* Numéro et nom de rue */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
-                        label="Numéro et nom de rue"
-                        name="street"
-                        variant="outlined"
-                        required
-                    />
-
-                    {/* Code postal */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
-                        label="Code postal"
-                        name="postalCode"
-                        variant="outlined"
-                        required
-                    />
-
-                    {/* Ville */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
-                        label="Ville"
-                        name="city"
-                        variant="outlined"
-                        required
-                    />
-
-                    {/* Pays */}
-                    <TextField
-                        sx={{ marginBottom: '1rem' }}
-                        label="Pays"
-                        name="country"
-                        variant="outlined"
-                        required
-                    />
-
-                    {/* Bouton soumettre */}
-                    <Button type="submit" variant="contained" color="primary" onSubmit={onSubmitEntrepriseForm}>
-                        Suivant
-                    </Button>
-                </form>
-            )}
-        </>
+            {/* Bouton soumettre */}
+            <Button type="submit" variant="contained" color="primary">
+                Suivant
+            </Button>
+        </form>
     )
 }

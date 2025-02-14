@@ -14,49 +14,50 @@ export default function RouteMap({ itineraire }) {
   useEffect(() => {
     // Récupérer le conteneur de la carte
     const container = document.getElementById('map');
-
-    // Si le conteneur a déjà été utilisé pour une carte, le réinitialiser
     if (container && container._leaflet_id) {
       container._leaflet_id = null;
     }
 
-    // Initialisation de la carte centrée sur le point de départ
-    const startCoords = itineraire.start.split(',');
-    const endCoords = itineraire.end.split(',');
+    let map;
+    // Si on a bien les coordonnées, on affiche le trajet
+    if (itineraire?.start && itineraire?.end) {
+      const startCoords = itineraire.start.split(',');
+      const endCoords = itineraire.end.split(',');
 
-    // Attention : ici on suppose que les coordonnées sont sous forme de chaîne "lon,lat"
-    // et que Leaflet attend [latitude, longitude]
-    const startLatLng = [startCoords[1], startCoords[0]];
-    const endLatLng = [endCoords[1], endCoords[0]];
+      // Convertir en nombres et inverser l'ordre pour Leaflet [lat, lon]
+      const startLatLng = [parseFloat(startCoords[1]), parseFloat(startCoords[0])];
+      const endLatLng = [parseFloat(endCoords[1]), parseFloat(endCoords[0])];
 
-    const map = Leaflet.map('map').setView(startLatLng, 13);
+      // Initialisation de la carte centrée sur le point de départ
+      map = Leaflet.map('map').setView(startLatLng, 13);
 
-    // Ajout du fond de carte OpenStreetMap
-    Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors',
-    }).addTo(map);
+      Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+      }).addTo(map);
 
-    // Création des marqueurs pour le départ et l'arrivée
-    Leaflet.marker(startLatLng)
-      .addTo(map)
-      .bindPopup('Départ');
+      // Marqueurs pour le départ et l'arrivée
+      Leaflet.marker(startLatLng).addTo(map).bindPopup('Départ');
+      Leaflet.marker(endLatLng).addTo(map).bindPopup('Arrivée');
 
-    Leaflet.marker(endLatLng)
-      .addTo(map)
-      .bindPopup('Arrivée');
+      // Tracé de la ligne entre les deux points
+      const latLngs = [startLatLng, endLatLng];
+      Leaflet.polyline(latLngs, { color: 'blue' }).addTo(map);
+      map.fitBounds(Leaflet.polyline(latLngs).getBounds());
+    } else {
+      // Sinon, afficher une carte par défaut sans trajet
+      // Par exemple, centrée sur Paris
+      const defaultLatLng = [48.8566, 2.3522];
+      map = Leaflet.map('map').setView(defaultLatLng, 13);
 
-    // Création d'une polyline reliant le départ et l'arrivée
-    const latLngs = [startLatLng, endLatLng];
-    Leaflet.polyline(latLngs, { color: 'blue' }).addTo(map);
+      Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+      }).addTo(map);
+    }
 
-    // Ajustement de la vue pour inclure l'ensemble du trajet
-    map.fitBounds(Leaflet.polyline(latLngs).getBounds());
-
-    // Fonction de nettoyage pour détruire la carte au démontage du composant
     return () => {
       map.remove();
     };
   }, [itineraire]);
 
-  return <div id="map" style={{ height: '500px', width: '100%' }} />;
+  return <div id="map" suppressHydrationWarning style={{ height: '500px', width: '100%' }} />;
 }

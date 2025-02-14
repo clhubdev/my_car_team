@@ -20,6 +20,8 @@
     "@mui/x-date-pickers": "^7.23.2",
     "axios": "^1.7.9",
     "dayjs": "^1.11.13",
+    "jose": "^5.9.6",
+    "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",
     "next": "15.1.0",
     "react": "^19.0.0",
