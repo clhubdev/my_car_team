@@ -1,0 +1,31 @@
+.appLayout {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.appLayout header {
+    width: 20%;
+    height: 100%;
+    border-right: 2px solid #ccc;
+}
+.mainFooterContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.appLayout main{
+    flex: 1;
+}
+
+.mainFooterContainer footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 2px solid #ccc;
+    padding: 1rem;
+}
+
+.mainFooterContainer footer div {
+    margin-right: 2rem;
+}

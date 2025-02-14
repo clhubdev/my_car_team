@@ -1,0 +1,49 @@
+.newRoute {
+    height: 100%;
+    padding: 1rem;
+}
+
+.newRoute h1 {
+    padding: 1rem;
+    border-radius: 16px;
+    color: white;
+    background-color: #27aa68;
+    font-size: 2rem;
+    font-weight: bold;
+    font-variant: small-caps;
+    margin-bottom: 1rem;
+}
+
+.formRoute {
+    display: flex;
+    align-items: center;
+}
+
+.formContainer {
+    margin-right: 1rem;
+}
+
+.formRoute form{
+    margin-right: 2rem;
+}
+
+.formRoute input {
+    border: 2px solid #27aa68;
+}
+
+.formRoute .mapContainer {
+    flex: 1;
+}
+
+.newRoute form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.mapContainer button {
+    padding: 1rem;
+    border-radius: 16px;
+    color: white;
+    background-color: #27aa68;
+}
