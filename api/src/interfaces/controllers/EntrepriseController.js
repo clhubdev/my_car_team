@@ -10,6 +10,7 @@ class EntrepriseController {
       const user = await this.entrepriseService.createEntreprise(userData);
       res.status(201).json(user);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: error.message });
     }
   }
