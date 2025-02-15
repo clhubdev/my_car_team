@@ -1,17 +1,32 @@
-import SequelizeUserRepository from '../../infrastructure/repositories/SequelizeUserRepository.js';
-import CreateUser from '../../application/useCases/CreateUser.js';
+import config from "../../config/env.config.js";
 
 class UserController {
-  async create(req, res) {
-    try {
-      const userRepository = new SequelizeUserRepository();
-      const createUser = new CreateUser(userRepository);
-      const user = await createUser.execute(req.body);
-      res.status(201).json(user);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
+
+    constructor(userService) {
+        this.userService = userService;
     }
-  }
+
+    async login(req, res) {
+        try {
+            const userData = req.body;
+            const user = await this.userService.login(userData);
+
+            res.cookie('token', user.token, {
+                maxAge: 24 * 60 * 60 * 1000, // 24 heures
+                httpOnly: true, // Le cookie n'est pas accessible via JavaScript côté client (sécurité)
+                secure: config.appEnv === 'production', // utilisation HTTPS (sécurité)
+                sameSite: 'strict', // protection faille CSRF (sécurité)
+            });
+
+            return res.status(200).json({
+                message: "Connexion réussie",
+                user: user.user,
+            });
+
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 }
 
-export default new UserController();
+export default UserController;

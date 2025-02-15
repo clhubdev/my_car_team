@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import routes from './src/interfaces/routes/index.js';
-import { setupSwagger } from "./swagger.js";
-import config from './config.js';
+import routes from '../interfaces/routes/index.js';
+import { setupSwagger } from "./swagger.config.js";
+import config from './env.config.js';
 
 const app = express();
 
@@ -11,7 +11,7 @@ const whitelist = ['https://mycarteam.fr', config.frontendBaseURL];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
+    if (!origin || process.env.NODE_ENV === 'test' || whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));

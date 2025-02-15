@@ -32,7 +32,7 @@ export default function RegisterForm() {
             <TextField
                 sx={{ marginBottom: '1rem' }}
                 label="Nom de l'entreprise"
-                name="companyName"
+                name="compagnyName"
                 variant="outlined"
                 required
             />

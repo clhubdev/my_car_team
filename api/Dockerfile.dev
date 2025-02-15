@@ -9,7 +9,7 @@ RUN apk add --no-cache g++ gcc make python3 && npm install -g nodemon
 COPY package*.json ./
 
 # Installer toutes les dépendances
-RUN npm install --production
+RUN npm install
 
 COPY . .
 
