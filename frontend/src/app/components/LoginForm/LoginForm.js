@@ -13,7 +13,6 @@ export default function LoginForm() {
 
         try {
             const results = await apiClient.post('/user/login', data)
-            console.log(results);
         } catch (error) {
             console.error(error);
         }

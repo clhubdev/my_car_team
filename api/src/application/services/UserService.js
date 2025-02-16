@@ -15,7 +15,7 @@ class UserService {
         // Vérifier si le mot de passe est correct
         const hashedPassword = user.dataValues.password;
         const isPasswordValid = await this.passwordHasher.compare(password, hashedPassword);
-        console.log(isPasswordValid);
+
         if (!isPasswordValid) {
             throw new Error("Mot de passe incorrect");
         }

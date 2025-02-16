@@ -11,13 +11,10 @@ export default function RegisterForm() {
         const formData = new FormData(event.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        console.log(data);
-
         // Si mot de passe != mot de passe de confirmation afficher une alerte
 
         try {
             const results = await apiClient.post('/user', data)
-            console.log(results);
         } catch (error) {
             console.error(error);
         }

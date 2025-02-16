@@ -14,7 +14,7 @@ class SequelizeEmployeeRepository extends IEmployeeRepository {
 
             return created;
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
 
     }

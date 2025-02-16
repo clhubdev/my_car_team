@@ -12,7 +12,7 @@ class SequelizeAddressRepository extends IAddressRepository {
             });
             return created;
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 

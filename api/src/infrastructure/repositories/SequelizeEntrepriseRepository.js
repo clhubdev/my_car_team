@@ -17,7 +17,7 @@ class SequelizeEntrepriseRepository extends IEntrepriseRepository {
             });
             return created;
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 

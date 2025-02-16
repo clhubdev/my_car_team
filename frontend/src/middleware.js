@@ -4,14 +4,12 @@ import { cookies } from 'next/headers';
 import { jwtVerify } from 'jose';
 
 export default async function middleware(req) {
-  console.log('Middleware exécuté pour la route:', req.nextUrl.pathname);
 
   const path = req.nextUrl.pathname;
   const isProtectedRoute = path.startsWith('/app');
 
   let session = null;
   const token = (await cookies()).get('token')?.value;
-  console.log('Token:', token);
 
   try {
     if (token) {
@@ -19,7 +17,6 @@ export default async function middleware(req) {
       const { payload } = await jwtVerify(token, secret);
       session = payload;
 
-      console.log('Session:', session);
     }
   } catch (error) {
     session = null;
@@ -27,7 +24,6 @@ export default async function middleware(req) {
   }
 
   if (isProtectedRoute && !session) {
-    console.log('Redirection vers /login');
     return NextResponse.redirect(new URL('/login', req.nextUrl));
   }
 

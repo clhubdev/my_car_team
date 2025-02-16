@@ -11,7 +11,7 @@ class SequelizeUserRepository extends IUserRepository {
       });
       return created;
     } catch (error) {
-      console.log('error', error);
+      console.error('error', error);
     }
   }
 
