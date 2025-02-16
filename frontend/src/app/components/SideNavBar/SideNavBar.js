@@ -1,6 +1,7 @@
 import styles from './sideNavBar.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import UserCard from '../UserCard/UserCard';
 
 export default function SideNavBar() {
     return (
@@ -37,6 +38,10 @@ export default function SideNavBar() {
                     </Link>
                 </li>
             </ul>
+
+            <div className={styles.userCardContainer}>
+                <UserCard />
+            </div>
         </nav>
     )
 }

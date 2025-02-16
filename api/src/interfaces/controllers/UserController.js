@@ -27,6 +27,16 @@ class UserController {
             res.status(500).json({ error: error.message });
         }
     }
+
+    async logout(req, res) {
+        try {
+            res.clearCookie('token');
+            return res.status(200).json({ message: "Déconnexion réussie" });
+
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 }
 
 export default UserController;
