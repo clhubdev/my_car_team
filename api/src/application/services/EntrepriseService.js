@@ -29,8 +29,6 @@ class EntrepriseService {
         throw new Error('Invalid email');
       }
 
-      console.log('user', user);
-
       const newUser = await this.userRepository.create(user , { transaction });
 
       // Créer Employee
@@ -38,6 +36,8 @@ class EntrepriseService {
       await this.employeeRepository.create(employee , { transaction });
 
       await transaction.commit();
+
+      delete newUser.dataValues.password;
 
       return newUser;
     }
