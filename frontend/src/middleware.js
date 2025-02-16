@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-// jose à la place de jsonwebtoken car le runtime Edge ne supporte pas le module crypto de jwt. 
 import { jwtVerify } from 'jose';
 
+// Middleware s'exécutant dans un env edge car cookie en httpOnly
 export default async function middleware(req) {
 
   const path = req.nextUrl.pathname;
@@ -16,7 +16,6 @@ export default async function middleware(req) {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);
       const { payload } = await jwtVerify(token, secret);
       session = payload;
-
     }
   } catch (error) {
     session = null;
