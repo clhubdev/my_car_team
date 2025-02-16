@@ -10,7 +10,6 @@ const databaseOptions = config.appEnv === 'test' ? testConfig : {
   logging: false, 
 }
 
-
 const sequelize = new Sequelize(config.dbName, config.dbUser, config.dbPassword, databaseOptions);
 
 export default sequelize;

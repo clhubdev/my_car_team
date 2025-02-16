@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import routes from '../interfaces/routes/index.js';
 import { setupSwagger } from "./swagger.config.js";
 import config from './env.config.js';
@@ -26,6 +27,7 @@ app.use(cors(corsOptions));
 // Middleware Swager (auto-doc api)
 setupSwagger(app);
 
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

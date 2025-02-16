@@ -8,7 +8,7 @@ const connectDB = async () => {
 
         // for dev only
         if (config.appEnv === 'development') {
-            await sequelize.sync({ alter: true });
+            await sequelize.sync({ force: true });
             console.log('All models were synchronized successfully.');
         }
 
