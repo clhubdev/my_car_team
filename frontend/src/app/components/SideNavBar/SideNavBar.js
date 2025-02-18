@@ -11,6 +11,7 @@ export default function SideNavBar() {
                     <Image
                         src="/logo.svg"
                         alt="Logo de l'application"
+                        priority
                         fill
                     />
                 </Link>

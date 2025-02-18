@@ -1,14 +1,11 @@
-import RouteCard from '@/app/components/RouteCard/RouteCard';
 import styles from './page.module.css';
+import RoutesList from '../../components/RoutesList/RoutesList.js';
 
 export default function reservation() {
     return (
         <div className={styles.reservation}>
-            <h1>Trouver un trajet</h1>
-            <RouteCard />
-            <RouteCard />
-            <RouteCard />
-            <RouteCard />
+            <h1>Trouver un trajet</h1> 
+            <RoutesList />
         </div>
     )
 }

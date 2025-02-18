@@ -1,0 +1,62 @@
+.confirmReservation {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.confirmReservation h1 {
+    padding: 1rem;
+    border-radius: 16px;
+    color: white;
+    background-color: #27aa68;
+    font-size: 2rem;
+    font-weight: bold;
+    font-variant: small-caps;
+    margin-bottom: 1rem;
+}
+
+.confirmReservationContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.confirm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 50%;
+}
+
+.confirm button{
+    border-radius: 16px;
+    padding: 1rem;
+    background-color: #ffD012;
+    font-weight: bold;
+    color: black;
+    margin-top: 1rem;
+}
+
+.confirm input {
+    border-radius: 16px;
+    width: fit-content;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: 2px solid #ffD012;
+}
+
+
+.map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
