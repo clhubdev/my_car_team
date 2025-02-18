@@ -1,4 +1,5 @@
 import styles from './routeCard.module.css';
+import Link from 'next/link';
 import FlagIcon from '@mui/icons-material/Flag';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
@@ -38,7 +39,9 @@ export default function RouteCard() {
                 <div className={styles.price}>
                     <p>55,48 €</p>
                 </div>
-                <button className={styles.reservationBtn}>Réserver</button>
+                <Link href="/app/reservation/confirmation">
+                    <button className={styles.reservationBtn}>Réserver</button>
+                </Link>
             </div>
         </div>
     )
