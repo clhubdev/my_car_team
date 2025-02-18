@@ -72,4 +72,24 @@ export default class OpenRouteServiceImpl extends IRouteService {
             throw error;
         }
     }
+
+    async getProfileRoute(startCoord, endCoord) {
+        const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${this.secret}&start=${encodeURIComponent(startCoord)}&end=${encodeURIComponent(endCoord)}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8'
+                }
+            });
+
+            const data = await response.json();
+
+            return data;
+        } catch (error) {
+            console.error('Erreur la récupération des options d\'auto complétion :', error.message);
+            throw error;
+        }
+    }
 }

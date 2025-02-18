@@ -17,6 +17,21 @@ export default class RouteController {
     }
   }
 
+  async getRouteById(req, res) {
+    try {
+      const { routeId } = req.params;
+
+      const route = await this.routeService.getRouteById(routeId);
+
+      return res.status(200).json({
+        message: 'Trajet récupéré avec succès',
+        data: route,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
   async getAllRoutesByEntreprise(req, res) {
     try {
       const { entrepriseId } = req.params;
@@ -52,6 +67,21 @@ export default class RouteController {
 
       res.status(200).json(coordinates);
     } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  async getRouteDurationSecondes(req, res) {
+    try {
+      const { startCoord, endCoord } = req.params;
+      const results = await this.routeService.getProfileRoute(startCoord, endCoord);
+
+      res.status(200).json({
+        message: 'Durée estimée en seconde du trajet récupérée avec succès',
+        data: results.features[0].properties.summary.duration
+      });
+    } catch (error) {
+      console.log(error);
       res.status(500).json({ error: error.message });
     }
   }

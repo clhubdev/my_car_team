@@ -16,6 +16,14 @@ export default class RouteService {
 
     }
 
+    async getRouteById(routeId) {
+        try {
+            return await this.routeRepository.getById(routeId);
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     async getAllRoutesByEntreprise(entrepriseId) {
         try {
             return await this.routeRepository.getRoutesByEntreprise(entrepriseId);
@@ -31,5 +39,9 @@ export default class RouteService {
 
     async getCoordinates(address) {
         return this.routeService.getCoordinates(address);
+    }
+
+    async getProfileRoute(startCoord, endCoord) {
+        return this.routeService.getProfileRoute(startCoord, endCoord);
     }
 }
