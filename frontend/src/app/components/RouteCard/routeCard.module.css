@@ -1,0 +1,48 @@
+.routeCard {
+    display: flex;
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+}
+
+.infosContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.infosRoute {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid lightgray;
+    padding: 1rem;
+}
+
+.infosConductor {
+    padding: 1rem;
+}
+
+.reservationContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: fit-content;
+    border-left: 1px solid lightgray;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.reservationBtn {
+    background-color: #27aa68;
+    padding: 1rem;
+    font-weight: bold;
+    color: white;
+}
