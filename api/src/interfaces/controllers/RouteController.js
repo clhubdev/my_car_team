@@ -17,6 +17,21 @@ export default class RouteController {
     }
   }
 
+  async getAllRoutesByEntreprise(req, res) {
+    try {
+      const { entrepriseId } = req.params;
+
+      const routes = await this.routeService.getAllRoutesByEntreprise(entrepriseId);
+
+      return res.status(200).json({
+        message: 'Trajets récupérés avec succès',
+        data: routes,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
   async getSuggestions(req, res) {
     try {
       const { query } = req.params;

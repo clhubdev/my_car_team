@@ -9,8 +9,16 @@ export default class RouteService {
     async createRoute(data) {
         try {
             const route = new Route(data.conductor, data.start, data.end, data.startPoint, data.endPoint, data.departureDatetime, data.availableSeats, data.price);
-            console.log(route);
             return await this.routeRepository.create(route);
+        } catch (error) {
+            throw new Error(error);
+        }
+
+    }
+
+    async getAllRoutesByEntreprise(entrepriseId) {
+        try {
+            return await this.routeRepository.getRoutesByEntreprise(entrepriseId);
         } catch (error) {
             throw new Error(error);
         }

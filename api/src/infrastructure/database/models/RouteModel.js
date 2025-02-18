@@ -54,4 +54,10 @@ const RouteModel = sequelize.define('routes', {
     }
 );
 
+// Définition de l'association entre RouteModel et EmployeeModel
+RouteModel.belongsTo(EmployeeModel, { 
+    foreignKey: 'conductor',  
+    as: 'employee'
+});
+
 export default RouteModel;
