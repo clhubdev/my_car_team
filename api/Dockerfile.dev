@@ -13,6 +13,8 @@ RUN npm install
 
 COPY . .
 
+RUN npx sequelize-cli db:seed:all
+
 EXPOSE 3001
 
 # CMD ["nodemon", "--config", "nodemon.json"]
