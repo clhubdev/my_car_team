@@ -2,8 +2,9 @@ import config from "../../config/env.config.js";
 
 class UserController {
 
-    constructor(userService) {
+    constructor(userService, employeeService) {
         this.userService = userService;
+        this.employeeService = employeeService;
     }
 
     async login(req, res) {
@@ -36,6 +37,12 @@ class UserController {
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
+    }
+
+    async getCurrentUser(req, res) {
+        const employeeData = await this.employeeService.getByUserId(req.user.id);
+        req.user.employee = employeeData;    
+        res.status(200).json(req.user);
     }
 }
 
