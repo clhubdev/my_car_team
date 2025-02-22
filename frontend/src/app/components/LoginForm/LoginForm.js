@@ -1,9 +1,16 @@
 "use client"
 
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import apiClient from "../../../../services/api";
+import styles from './loginForm.module.css';
+import { useRouter } from 'next/navigation';
+import Alert from '@mui/material/Alert';
+import { useState } from 'react';
 
 export default function LoginForm() {
+    const router = useRouter();
+
+    const [alerts, setAlerts] = useState([]);
 
     async function onSubmitForm(event) {
         event.preventDefault();
@@ -12,9 +19,10 @@ export default function LoginForm() {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            const results = await apiClient.post('/user/login', data)
+            await apiClient.post('/user/login', data);
+            router.push('/app');
         } catch (error) {
-            console.error(error);
+            setAlerts([{ severity: 'error', message: error.response.data.error }]);
         }
     }
 
@@ -22,6 +30,12 @@ export default function LoginForm() {
         <form className="flex flex-col justify-center p-5" onSubmit={(e) => onSubmitForm(e)}>
 
             <h2 className="text-center mb-4">Se connecter</h2>
+
+            {alerts.map((alert, index) => (
+                <Alert key={index + alert.message} severity={alert.severity}  sx={{ mb: 2 }} >
+                    {alert.message}
+                </Alert>
+            ))}
 
             {/* Email connexion */}
             <TextField
@@ -46,9 +60,9 @@ export default function LoginForm() {
             />
 
             {/* Bouton soumettre */}
-            <Button type="submit" variant="contained" color="primary">
+            <button type="submit" className={styles.btn}>
                 Se connecter
-            </Button>
+            </button>
         </form>
     )
 }
