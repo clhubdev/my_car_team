@@ -8,7 +8,7 @@ import config from './env.config.js';
 const app = express();
 
 // CORS Liste domaines autorisés
-const whitelist = ['https://mycarteam.fr/', config.frontendBaseURL];
+const whitelist = ['https://mycarteam.fr', config.frontendBaseURL];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -23,6 +23,12 @@ const corsOptions = {
 
 // * pour autoriser préfligt sinon erreur cors
 app.options('*', cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
 // End Cors
 
 // Middleware Swager (auto-doc api)
