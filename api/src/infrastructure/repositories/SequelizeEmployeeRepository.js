@@ -23,6 +23,14 @@ class SequelizeEmployeeRepository extends IEmployeeRepository {
         const employee = await EmployeeModel.findByPk(id);
         return employee;
     }
+
+    async findByUserId(userId, options = {}) {
+        const employee = await EmployeeModel.findOne({
+            where: { user_id: userId },
+            ...options
+        });
+        return employee;
+    }
 }
 
 export default SequelizeEmployeeRepository;
