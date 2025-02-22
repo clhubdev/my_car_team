@@ -26,7 +26,7 @@ describe('UserService', () => {
 
             await expect(userService.login({ email: 'test@example.com', password: 'password' }))
                 .rejects
-                .toThrow("L'utilisateur n'existe pas");
+                .toThrow("Email de connextion ou mot de passe erronée");
         });
 
         it('should throw an error if the password is incorrect', async () => {
@@ -36,7 +36,7 @@ describe('UserService', () => {
 
             await expect(userService.login({ email: 'test@example.com', password: 'wrongPassword' }))
                 .rejects
-                .toThrow("Mot de passe incorrect");
+                .toThrow("Email de connextion ou mot de passe erronée");
         });
 
         it('should return the user with a token if the login is successful', async () => {

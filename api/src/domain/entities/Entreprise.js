@@ -1,7 +1,10 @@
-// id, address, name, registrationNumber, vatNumber, phone, email, industry, numberOfEmployees, incorporationDate
-
 class Entreprise {
     constructor(name, phone, email) {
+
+        if (!Entreprise.isValidEmail(email)) {
+            throw new Error("Email de l'entreprise invalide");
+        }
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -12,6 +15,10 @@ class Entreprise {
         this.industry = null;
         this.numberOfEmployees = null;
         this.incorporationDate = null;
+    }
+
+    static isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
     }
 }
 

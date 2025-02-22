@@ -10,10 +10,12 @@ const entrepriseController = new EntrepriseController(entrepriseService);
 const userController = new UserController(userService, employeeService);
 const verifyToken = verifyTokenMiddleware(tokenAuthentification);
 
+// Routes publiques 
 router.post('/user', (req, res) => entrepriseController.create(req, res));
 router.post('/user/login', (req, res) => userController.login(req, res));
 router.post('/user/logout', (req, res) => userController.logout(req, res));
 
+// Routes privées
 router.get('/user/current', verifyToken, (req, res) => userController.getCurrentUser(req, res));
 
 export default router;

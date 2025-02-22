@@ -9,7 +9,7 @@ class UserService {
         // Vérifier si l'utilisateur existe
         const user = await this.userRepository.findByEmail(email);
         if (!user) {
-            throw new Error("L'utilisateur n'existe pas");
+            throw new Error("Email de connextion ou mot de passe erronée");
         }
 
         // Vérifier si le mot de passe est correct
@@ -17,7 +17,7 @@ class UserService {
         const isPasswordValid = await this.passwordHasher.compare(password, hashedPassword);
 
         if (!isPasswordValid) {
-            throw new Error("Mot de passe incorrect");
+            throw new Error("Email de connextion ou mot de passe erronée");
         }
 
         // Créer le token d'authentification
