@@ -6,5 +6,6 @@ export default axios.create({
     headers: {
         'Content-type': 'application/json'
     },
+    // pour envoyer le cookie avec la requete
     withCredentials: true,
 });

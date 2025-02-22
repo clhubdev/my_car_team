@@ -21,7 +21,8 @@ const corsOptions = {
   credentials: true, 
 };
 
-app.use(cors(corsOptions));
+// * pour autoriser préfligt sinon erreur cors
+app.options('*', cors(corsOptions));
 // End Cors
 
 // Middleware Swager (auto-doc api)
