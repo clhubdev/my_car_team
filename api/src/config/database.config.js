@@ -7,10 +7,11 @@ const connectDB = async (retries = 5) => {
         await sequelize.authenticate();
         console.log('Connexion à la base de données réussie');
 
-        // for dev only
+        // env dev only
         if (config.appEnv === 'development') {
             await sequelize.sync({ force: true });
             console.log('All models were synchronized successfully.');
+
             execSync('npx sequelize-cli db:seed:all', { stdio: 'inherit' });
             console.log('Seeders exécutés avec succès');
         }
