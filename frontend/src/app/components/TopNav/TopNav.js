@@ -12,6 +12,7 @@ export default function TopNav() {
                     alt="Logo de MyCarTeam"
                     width={150}
                     height={50}
+                    priority
                 />
             </Link>
             
