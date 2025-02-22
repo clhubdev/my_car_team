@@ -2,15 +2,14 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 1rem;
     box-sizing: border-box;
 }
 
 .confirmReservation h1 {
     padding: 1rem;
-    border-radius: 16px;
     color: white;
     background-color: #27aa68;
+    text-align: center;
     font-size: 2rem;
     font-weight: bold;
     font-variant: small-caps;
@@ -20,7 +19,7 @@
 .confirmReservationContainer {
     flex: 1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .confirm {
@@ -30,10 +29,11 @@
     align-items: center;
     text-align: center;
     height: 100%;
-    width: 50%;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
-.confirm button{
+.confirm button {
     border-radius: 16px;
     padding: 1rem;
     background-color: #ffD012;
@@ -57,6 +57,31 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 50%;
+    width: 100%;
+    z-index: 1;
 }
 
+
+@media (min-width: 480px) {
+    .confirmReservation {
+        padding: 1rem;
+    }
+
+    .confirmReservation h1 {
+        border-radius: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .confirmReservationContainer {
+        flex-direction: row;
+    }
+
+    .map {
+        width: 50%;
+    }
+
+    .confirm {
+        width: 50%;
+    }
+}

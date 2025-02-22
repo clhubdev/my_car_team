@@ -1,5 +1,7 @@
 .routeCard {
     display: flex;
+    flex-direction: column;
+    align-items: space-between;
     width: 100%;
     background-color: whitesmoke;
     border-radius: 16px;
@@ -21,6 +23,10 @@
     padding: 1rem;
 }
 
+.icons {
+    display: none !important;
+}
+
 .startEndInfos {
     display: flex;
     align-items: center;
@@ -40,14 +46,18 @@
 }
 
 .infosConductor {
+    display: flex;
     padding: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .reservationContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     border-left: 1px solid lightgray;
 }
 

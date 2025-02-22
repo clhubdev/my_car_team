@@ -11,10 +11,21 @@ export default function ConfirmReservation({ params }) {
     const { routeId } = useParams();
 
     const [route, setRoute] = useState(null);
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
         fetchRoute();
+        fetchCurrentUser()
     }, []);
+
+    async function fetchCurrentUser() {
+        try {
+            const results = await apiClient.get('/user/current');
+            setCurrentUser(results.data);
+        } catch (error) {
+            console.error(error); 
+        }
+    }
 
     async function fetchRoute() {
         try {
@@ -25,24 +36,41 @@ export default function ConfirmReservation({ params }) {
         }
     }
 
-    return (
-        <div className={styles.confirmReservation}>
-            <h1>Confirmer la réservation</h1>
+    async function onSubmitBooking(event) {
+        event.preventDefault();
 
-            <section className={styles.infos}>
-                {route && <RouteCard route={route} displayReservationBtn={false} />}
-            </section>
+        const seats = event.target.seats.value;
 
-            <div className={styles.confirmReservationContainer}>
-                <form className={styles.confirm}>
-                    <label htmlFor="seats">Combien de siège(s) souhaitez-vous réserver ?</label>
-                    {route && <input type="number" name='seats' id='seats' min={1} max={route.availableSeats} defaultValue={1}/>}
-                    <button type='submit'>Réserver</button>
-                </form>
-                <section className={styles.map}>
-                    {route && <RouteMap itineraire={{start: route.startPoint.coordinates.join(','), end: route.endPoint.coordinates.join(',')}} />}
+        try {
+            const results = await apiClient.post('/booking', {
+                route_id: routeId,
+                employee_id: currentUser.employee.id,
+                numberReservedSeats: seats
+            });
+            console.log(results);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+        return (
+            <div className={styles.confirmReservation}>
+                <h1>Confirmer la réservation</h1>
+
+                <section className={styles.infos}>
+                    {route && <RouteCard route={route} displayReservationBtn={false} />}
                 </section>
+
+                <div className={styles.confirmReservationContainer}>
+                    <form className={styles.confirm} onSubmit={(e) => onSubmitBooking(e)}>
+                        <label htmlFor="seats">Combien de siège(s) souhaitez-vous réserver ?</label>
+                        {route && <input type="number" name='seats' id='seats' min={1} max={route.availableSeats} defaultValue={1} />}
+                        <button type='submit'>Réserver</button>
+                    </form>
+                    <section className={styles.map}>
+                        {route && <RouteMap itineraire={{ start: route.startPoint.coordinates.join(','), end: route.endPoint.coordinates.join(',') }} />}
+                    </section>
+                </div>
             </div>
-        </div>
-    )
-}
+        )
+    }

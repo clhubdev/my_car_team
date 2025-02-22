@@ -36,6 +36,7 @@ export default function RouteCard({ route, displayReservationBtn = true }) {
                 <div className={styles.infosRoute}>
                     <div className={styles.startEndInfos}>
                         <div>
+                            <p>Départ:</p>
                             <p>{new Date(route.departureDatetime).toLocaleString('fr-FR', {
                                 day: 'numeric',
                                 month: 'long',
@@ -45,18 +46,19 @@ export default function RouteCard({ route, displayReservationBtn = true }) {
                             })}</p>
                             <p>{route.start}</p>
                         </div>
-                        <FlagIcon fontSize="large" />
+                        <FlagIcon fontSize="large" className={styles.icons}/>
                     </div>
 
                     <div className={styles.routeLine}>
                         <div className={styles.line}></div>
-                        <DirectionsCarIcon fontSize="large" />
+                        <DirectionsCarIcon fontSize="large" className={styles.icons} />
                         <div className={styles.line}></div>
                     </div>
 
                     <div className={styles.startEndInfos}>
-                        <SportsScoreIcon fontSize="large" />
+                        <SportsScoreIcon fontSize="large" className={styles.icons} />
                         <div>
+                            <p>Arrivée:</p>
                             <p>{arrivalDatetime.toLocaleString('fr-FR', {
                                 day: 'numeric',
                                 month: 'long',
