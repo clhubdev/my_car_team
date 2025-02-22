@@ -8,7 +8,7 @@ import config from './env.config.js';
 const app = express();
 
 // CORS Liste domaines autorisés
-const whitelist = ['https://mycarteam.fr', config.frontendBaseURL];
+const whitelist = ['https://mycarteam.fr/', config.frontendBaseURL];
 
 const corsOptions = {
   origin: function (origin, callback) {
