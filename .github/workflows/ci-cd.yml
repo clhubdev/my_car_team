@@ -88,10 +88,12 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/api:latest
             docker pull ${{ secrets.DOCKER_USERNAME }}/frontend:latest
 
-            # Aller dans le dossier où se trouve votre docker-compose.yml sur le Droplet
             cd /root/myCarTeam
 
-            # Redémarrer les services
+            # Migations sequelize
+            docker-compose run --rm api npx sequelize-cli db:migrate --env production
+
+            # Redémarrage des conteneurs
             docker-compose down
             docker image prune -f
             docker-compose up -d --force-recreate
