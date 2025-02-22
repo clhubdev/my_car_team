@@ -21,13 +21,15 @@ const corsOptions = {
   credentials: true, 
 };
 
-app.options('*', cors(corsOptions));
-app.use(cors(corsOptions));
-
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
+
+app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
+
+
 
 // End Cors
 
