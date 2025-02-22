@@ -92,6 +92,7 @@ jobs:
 
             # Migations sequelize
             docker-compose run --rm api npx sequelize-cli db:migrate --env production
+            docker-compose run --rm api npx sequelize-cli db:seed:all --env production
 
             # Redémarrage des conteneurs
             docker-compose down
