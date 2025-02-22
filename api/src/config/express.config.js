@@ -15,6 +15,7 @@ const corsOptions = {
     if (!origin || process.env.NODE_ENV === 'test' || whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
+      console.error(`Origine non autorisée: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -28,9 +29,6 @@ app.use((req, res, next) => {
 
 app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
-
-
-
 // End Cors
 
 // Middleware Swager (auto-doc api)
