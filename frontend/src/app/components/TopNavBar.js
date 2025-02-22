@@ -7,8 +7,7 @@ export default function TopNavBar() {
             <Link href="/">
                 <Image 
                     src='/logo.svg'
-                    width={500}
-                    height={500}
+                    fill
                     alt="logo MyCarTeam"
                     className="w-32" 
                     priority         

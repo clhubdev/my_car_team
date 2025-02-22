@@ -1,0 +1,43 @@
+.navbar {
+    position: fixed;
+    /* fixe l'élément par rapport à la fenêtre */
+    top: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #27aa68;
+    color: white;
+    padding: 2rem;
+    height: 10vh;
+    z-index: 9000;
+}
+
+.contactBtn {
+    background-color: #FFD012;
+    border-radius: 16px;
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.homeIcon {
+    display: none;
+    margin-right: 20px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (min-width: 480px) {
+    .homeIcon {
+        display: block;
+        color: white;
+        width: 1.5rem;
+    }
+
+    /* style={{width:"4rem", marginBottom: '1rem', color: '#C14953'}} */
+}

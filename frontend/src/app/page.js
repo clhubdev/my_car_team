@@ -1,105 +1,90 @@
-'use client';
-
 import Image from "next/image";
-import { makeTest } from '../../services/api';
-import { useEffect } from "react";
+import styles from "./page.module.css";
+import TopNav from "./components/TopNav/TopNav.js";
+import Footer from "./components/Footer/Footer";
+import Card from "./components/Card/Card";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly. Test</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+  return (
+    <>
+      <header className={styles.header}>
+        <TopNav />
+      </header>
+
+      <main className={styles.main}>
+
+        <section className={styles.hero}>
+          <div className={styles.description}>
+            <h1>MyCarTeam.</h1>
+            <h2>Notre mission, facilitez vos trajets professionnels</h2>
+
+            <div className={styles.quoteImg}>
+              <div className={styles.quote}>
+                <span style={{ fontSize: '2rem', fontWeight: "bold", display: 'block', textAlign: 'left', height: 'fit-content' }}>“</span>
+                <p>70% des trajets domicile-travail sont réalisés en véhicule individuel et seulement 3% en covoiturage</p>
+                <span style={{ fontSize: '2rem', fontWeight: "bold", display: 'block', textAlign: 'right' }}>”</span>
+              </div>
+
+              <Image
+                src="/car.png"
+                width={200}
+                height={200}
+                alt="illustration justice"
+                className={styles.heroImg}
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.specialties}>
+
+          <Card
+            className={styles.specialityCard}
+            img="/earth.png"
+            title="Écologie"
+            text="Partager sa voiture, c'est diviser son empreinte carbonne"
+            alt="illustration de la planètre terre qui sourit"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+
+          <Card
+            img="/time.png"
+            title="Efficacité"
+            text="Gagnez du temps dans vos recherches de solutions de transport"
+            alt="illustration d'un chronomètre"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+
+          <Card
+            img="/team.png"
+            title="Cohésion d'équipe"
+            text="Rien de mieux qu'un long trajet pour partager ses passions"
+            alt="illustration d'une équipe"
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        </section>
+
+        <section className={styles.presentation}>
+
+          <div className={styles.presentationImgContainer}>
+            <video preload="none" autoPlay={true} loop={true} muted={true}>
+              <source src="/video_car.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div className={styles.presentationText}>
+            <h2 style={{ fontVariant: "small-caps" }}>Le partenaire d'une mobilité professionnelle et responsable</h2>
+            <p>MyCarTeam est une application de covoiturage professionnel permettant la mise en relation de salariés d'une même entreprise souhaitant covoiturer.</p>
+            <p>A destination des entreprises et de ses salariés, elle offre un espace de rencontre entre ceux qui proposent des trajets et ceux qui cherchent à voyager de façon responsable</p>
+            <p>Discuter à la machine à café c'est sympa, discuter sur le chemin de votre lieu de travail ou d'évènements d'entreprise, c'est mieux</p>
+            <p>Avec MyCarTeam, c'est la fin des longs moments à chercher un moyen de se rendre sur un lieu de travail.</p>
+            <p>L'essayer c'est l'adopter</p>
+          </div>
+        </section>
+
+      </main >
+
+      <Footer />
+    </>
   );
 }

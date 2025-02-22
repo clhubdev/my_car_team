@@ -1,0 +1,236 @@
+.header {
+  width: 100vw;
+  height: 10vh;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+
+/* HERO SECTION */
+.main .hero {
+  background-size: cover;
+  background-position: bottom;
+  color: black;
+  width: 100vw;
+  height: fit-content;
+}
+
+.quoteImg {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 1rem 1rem 0 1rem;
+}
+
+.heroImg {
+  align-self: flex-end;
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: fit-content;  
+  width: 100vw; 
+}
+
+.description h1 {
+  font-size: max(2rem, 4rem); /* La taille de police minimale est de 20px */
+  margin-bottom: 0px !important;
+  font-variant: small-caps;
+  text-align: center;
+  width: 100vw;
+}
+
+.description h2 {
+  font-size: max(2rem, 2rem); /* La taille de police minimale est de 18px */
+  margin-top: 0px !important;
+  font-variant: small-caps;
+  text-align: center;
+  width: 100vw;
+}
+
+.description .quote {
+  padding: 0 1rem;
+  width: fit-content;
+  height: fit-content;
+  font-size: 1rem;
+  font-style: oblique 23deg;
+  text-align: center;
+}
+
+.description h1,
+.description h2,
+.description p {
+  margin: 1rem;
+}
+
+/* SPECIALTIES SECTION */
+.specialties {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 3rem;
+  background-color: whitesmoke;
+  width: 100vw;
+  height: fit-content;
+}
+
+.specialties .specialityCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  width: 20vw;
+  border: 1px solid #707070;
+  border-radius: 16px;
+  margin: 1rem;
+}
+
+.specialties .specialityCard i {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+/* PRESENTATION SECTION */
+.presentation {
+  display: flex;
+  flex-direction: column;
+  background-color: #27AA68;
+  color: white;
+  height: fit-content;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.presentation .presentationImgContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 200px;
+}
+
+.presentation video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.presentation .presentationText {
+  display: flex;
+  flex: 1; 
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: #27AA68;
+  text-align: justify;
+  color: #2D2D2A;
+  overflow: hidden;
+}
+
+.presentation .presentationText h2 {
+  font-size: max(3vw, 18px); /* La taille de police minimale est de 18px */
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.presentation .presentationText p {
+  margin: 1rem 0;
+  font-size: max(1.25rem, 1rem); /* La taille de police minimale est de 14px */
+}
+
+/* CONTACT SECTION */
+.contact {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  justify-content: space-around;
+  width: 100vw;
+  align-items: center;
+  background-color: whitesmoke;
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .presentation {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .presentation .presentationImgContainer {
+    flex: 1;
+    height: auto;
+  }
+
+  /* .presentation .presentationImg {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  } */
+
+  .contact {
+    flex-direction: row;
+  }
+
+  .contactContainer {
+    flex: 1;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  }
+
+  .card:hover span {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .card:hover span {
+    transform: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {}
