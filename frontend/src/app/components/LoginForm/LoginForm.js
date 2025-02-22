@@ -19,7 +19,7 @@ export default function LoginForm() {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            await apiClient.post('/user/login', data);
+            const response = await apiClient.post('/user/login', data);
             router.push('/app');
         } catch (error) {
             setAlerts([{ severity: 'error', message: error.response.data.error }]);

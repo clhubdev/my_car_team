@@ -15,8 +15,6 @@ class EntrepriseService {
   async createEntreprise({ compagnyName, compagnyPhone, compagnyEmail, employeeEmail, password, lastname, firstname }) {
     const transaction = await this.sequelize.transaction();
 
-
-
     try {
       // Création de l'entreprise
       const entreprise = new Entreprise(compagnyName, compagnyPhone, compagnyEmail);
