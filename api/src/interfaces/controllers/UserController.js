@@ -12,12 +12,20 @@ class UserController {
             const userData = req.body;
             const user = await this.userService.login(userData);
 
-            res.cookie('token', user.token, {
+            const cookieOptions = {
                 maxAge: 24 * 60 * 60 * 1000, // 24 heures
-                httpOnly: true, // Le cookie n'est pas accessible via JavaScript côté client (sécurité)
-                secure: config.appEnv === 'production', // utilisation HTTPS (sécurité)
-                sameSite: 'strict', // protection faille CSRF (sécurité)
-            });
+                httpOnly: true,
+                secure: process.env.APP_ENV === 'production', // HTTPS en prod, pas en dev
+                sameSite: process.env.APP_ENV === 'production' ? 'none' : 'strict',
+            };
+            
+            if (process.env.APP_ENV === 'production') {
+                cookieOptions.domain = '.mycarteam.fr';
+            }
+            
+            res.cookie('token', user.token, cookieOptions);
+            
+            
 
             return res.status(200).json({
                 message: "Connexion réussie",
