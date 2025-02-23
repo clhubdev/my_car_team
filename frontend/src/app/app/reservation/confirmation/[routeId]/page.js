@@ -6,12 +6,14 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import apiClient from '../../../../../../services/api.js';
 import RouteMap from '@/app/components/RouteMap';
+import Alert from '@mui/material/Alert';
 
 export default function ConfirmReservation({ params }) {
     const { routeId } = useParams();
 
     const [route, setRoute] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
+    const [alerts, setAlerts] = useState([]);
 
     useEffect(() => {
         fetchRoute();
@@ -23,7 +25,7 @@ export default function ConfirmReservation({ params }) {
             const results = await apiClient.get('/user/current');
             setCurrentUser(results.data);
         } catch (error) {
-            console.error(error); 
+            setAlerts([{ severity: 'error', message: 'Erreur serveur : merci de contacter l\'administrateur' }]);
         }
     }
 
@@ -32,7 +34,7 @@ export default function ConfirmReservation({ params }) {
             const results = await apiClient.get(`/route/id/${routeId}`);
             setRoute(results.data.data);
         } catch (error) {
-            console.error(error);
+            setAlerts([{ severity: 'error', message: 'Erreur serveur : merci de contacter l\'administrateur' }]);
         }
     }
 
@@ -47,30 +49,57 @@ export default function ConfirmReservation({ params }) {
                 employee_id: currentUser.employee.id,
                 numberReservedSeats: seats
             });
-            console.log(results);
+            setAlerts([{ severity: 'success', message: 'Votre demande de covoiturage a bien été prises en compte' }]);
         } catch (error) {
-            console.error(error);
+            setAlerts([{ severity: 'error', message: error.response.data.error }]);
         }
     };
 
-        return (
-            <div className={styles.confirmReservation}>
-                <h1>Confirmer la réservation</h1>
+    return (
+        <div className={styles.confirmReservation}>
+            <h1>Confirmer la réservation</h1>
 
-                <section className={styles.infos}>
-                    {route && <RouteCard route={route} displayReservationBtn={false} />}
+            <section className={styles.infos}>
+                {route && <RouteCard route={route} displayReservationBtn={false} />}
+            </section>
+
+            <div className={styles.confirmReservationContainer}>
+                <form className={styles.confirm} onSubmit={(e) => onSubmitBooking(e)}>
+
+                    {/* Affichage des alertes (UX) */}
+                    <div role="alert" aria-live="assertive"> 
+                        {alerts.map((alert, index) => (
+                            <Alert key={index + alert.message} severity={alert.severity} sx={{ mb: 2 }} >
+                                {alert.message}
+                            </Alert>
+                        ))}
+                    </div>
+
+                    <label htmlFor="seats">Combien de siège(s) souhaitez-vous réserver ?</label>
+
+                    {route && (
+                        <input 
+                            type="number" 
+                            name='seats' 
+                            id='seats' 
+                            min={1} max={route.availableSeats} 
+                            defaultValue={1} 
+                            aria-describedby="seats-help"
+
+                        />
+                    )}
+
+                    <span id="seats-help" className={styles.hidden}>
+                        Nombre minimum 1, nombre maximum {route ? route.availableSeats : 1}
+                    </span>
+                    
+                    <button type='submit' aria-label="Soummission du formulaire pour réserver les sièges sélectionnés">Réserver</button>
+
+                </form>
+                <section className={styles.map} aria-label="Carte de l'itinéraire">
+                    {route && <RouteMap itineraire={{ start: route.startPoint.coordinates.join(','), end: route.endPoint.coordinates.join(',') }} />}
                 </section>
-
-                <div className={styles.confirmReservationContainer}>
-                    <form className={styles.confirm} onSubmit={(e) => onSubmitBooking(e)}>
-                        <label htmlFor="seats">Combien de siège(s) souhaitez-vous réserver ?</label>
-                        {route && <input type="number" name='seats' id='seats' min={1} max={route.availableSeats} defaultValue={1} />}
-                        <button type='submit'>Réserver</button>
-                    </form>
-                    <section className={styles.map}>
-                        {route && <RouteMap itineraire={{ start: route.startPoint.coordinates.join(','), end: route.endPoint.coordinates.join(',') }} />}
-                    </section>
-                </div>
             </div>
-        )
-    }
+        </div>
+    )
+}

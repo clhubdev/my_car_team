@@ -14,7 +14,7 @@ export default function RegisterForm() {
         // Si mot de passe != mot de passe de confirmation afficher une alerte
 
         try {
-            const results = await apiClient.post('/user', data)
+            const results = await apiClient.post('/user', data);
         } catch (error) {
             console.error(error);
         }
