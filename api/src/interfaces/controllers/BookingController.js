@@ -7,7 +7,6 @@ class BookingController {
     async create(req, res) {
       try {
         const bookingData = req.body;
-
         const booking = await this.bookingService.create(bookingData);
         
         res.status(201).json(booking);

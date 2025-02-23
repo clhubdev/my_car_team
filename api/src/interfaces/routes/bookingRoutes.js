@@ -12,5 +12,4 @@ const verifyToken = verifyTokenMiddleware(tokenAuthentification);
 
 router.post('/booking', verifyToken, (req, res) => bookingController.create(req, res));
 
-
 export default router;
