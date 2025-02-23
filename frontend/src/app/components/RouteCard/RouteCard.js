@@ -14,8 +14,8 @@ export default function RouteCard({ route, displayReservationBtn = true }) {
 
     useEffect(() => {
         fetchEstimateArrival();
-    }, [route]);
-
+    }, []);
+   
     async function fetchEstimateArrival() {
         try {
             const results = await apiClient.get(
@@ -81,7 +81,7 @@ export default function RouteCard({ route, displayReservationBtn = true }) {
                 </div>
 
                 {displayReservationBtn && (
-                    <Link href={`/app/reservation/confirmation/${route.id}`} >
+                    <Link href={`/app/reservation/confirmation/${route.id}`}  className={styles.link}>
                         <button className={styles.reservationBtn}>Réserver</button>
                     </Link>
                 )}

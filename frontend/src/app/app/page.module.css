@@ -1,0 +1,50 @@
+.dashboard {
+    height: 100%;
+    padding: 1rem;
+}
+
+.dashboard h1 {
+    padding: 1rem;
+    border-radius: 16px;
+    color: white;
+    background-color: #27aa68;
+    font-size: 2rem;
+    font-weight: bold;
+    font-variant: small-caps;
+    margin-bottom: 1rem;
+}
+
+.dashboard .actions {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard .link {
+    display: block;
+    width: 100%;
+}
+
+.dashboard button {
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+    padding: 1rem;
+    background-color: #ffD012;
+    font-weight: bold;
+    color: black;
+    margin-top: 1rem;
+}
+
+@media (min-width: 480px) {
+    .dashboard {
+        padding: 1rem;
+    }
+
+    .dashboard h1 {
+        border-radius: 16px;
+    }
+}
+
+
+@media (min-width: 768px) {
+}

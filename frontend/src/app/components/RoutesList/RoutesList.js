@@ -6,17 +6,37 @@ import { useEffect, useState } from 'react';
 import apiClient from '../../../../services/api.js';
 
 export default function RoutesList() {
+    const [currentEntrepriseId, setCurrentEntrepriseId] = useState(null);
     const [routes, setRoutes] = useState([]);
 
     useEffect(() => {
-        fetchRoutes();
-    }, [routes]);
+        fetchCurrentUser()
+    }, []);
+
+    useEffect(() => {
+        if (currentEntrepriseId) {
+            fetchRoutes();
+        }
+    }, [currentEntrepriseId]);
+
+    async function fetchCurrentUser() {
+        try {
+            const results = await apiClient.get('/user/current');
+            setCurrentEntrepriseId(results.data.employee.entreprise_id);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     async function fetchRoutes() {
-        const results = await apiClient.get(`/route/${1}`, {});
-        setRoutes(results.data.data);
+        try {
+            const results = await apiClient.get(`/route/entreprise/${currentEntrepriseId}`, {});
+            setRoutes(results.data.data);
+        } catch (error) {
+            console.error(error);
+        }
     }
-    
+
     return (
         <div className={styles.routesList}>
             {routes.map((route) => (

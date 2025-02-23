@@ -41,3 +41,14 @@
 .userCardContainer {
     margin-top: auto;
 }
+
+
+@media (min-width: 768px) {
+    .sideNavBar {
+        display: flex;
+    }
+
+    .mobileNavBar {
+        display: none;
+    }
+}
