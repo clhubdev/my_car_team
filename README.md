@@ -5,3 +5,5 @@ Final project for the RNCP qualification (EU-recognised professional qualificati
 Professional carpooling application for companies and their employees.
 
 Project source: PDF presentation file (UML diagrams, target audience, stack...).
+
+RNCP qualification obtained in February 2025.
